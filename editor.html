@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>CKEditor 5 – multi-root editor build – development sample</title>
+    <link rel="stylesheet" type="text/css" href="css/editor_style.css">
+</head>
+<body>
+<div id="toolbar"></div>
+<div contenteditable="true">
+    <div contenteditable="false">
+        <div class="editor">
+            <div id="header">
+                <p>This is the initial editor content.</p>
+            </div>
+        </div>
+        <div class="editor">
+            <div id="content">
+                <p>This is the initial editor content.</p>
+            </div>
+        </div>
+        <div class="boxes">
+            <div class="box box-left editor">
+                <div id="left-side">
+                    <p>This is the initial editor content.</p>
+                </div>
+            </div>
+            <div class="box box-right editor">
+                <div id="right-side">
+                    <p>This is the initial editor content.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.ckeditor.com/ckeditor5/41.2.0/multi-root/ckeditor.js"></script>
+<script>
+    MultiRootEditor
+        .create( {
+            // Define roots / editable areas:
+            header: document.getElementById( 'header' ),
+            content: document.getElementById( 'content' ),
+            leftSide: document.getElementById( 'left-side' ),
+            rightSide: document.getElementById( 'right-side' )
+        } )
+        .then( editor => {
+            window.editor = editor;
+
+            // Append toolbar to a proper container.
+            const toolbarContainer = document.getElementById( 'toolbar' );
+            toolbarContainer.appendChild( editor.ui.view.toolbar.element );
+
+            // Make toolbar sticky when the editor is focused.
+            editor.ui.focusTracker.on( 'change:isFocused', () => {
+                if ( editor.ui.focusTracker.isFocused ) {
+                    toolbarContainer.classList.add( 'sticky' );
+                } else {
+                    toolbarContainer.classList.remove( 'sticky' );
+                }
+            } );
+        } )
+        .catch( error => {
+            console.error( 'There was a problem initializing the editor.', error );
+        } );
+</script>
+
+</body>
+</html>
