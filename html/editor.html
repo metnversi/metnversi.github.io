@@ -1,12 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
+    <meta charset="utf-8">
+    <title>Classic editor</title>
+    <script src="https://cdn.ckeditor.com/ckeditor5/41.2.0/classic/ckeditor.js"></script>
 </head>
 <body>
-    <textarea name="editor1"></textarea>
+    <h1>Classic editor</h1>
+    <div id="editor">
+        <p>This is some sample content.</p>
+    </div>
     <script>
-        CKEDITOR.replace( 'editor1' );
+        ClassicEditor
+            .create( document.querySelector( '#editor' ) )
+            .catch( error => {
+                console.error( error );
+            } );
     </script>
 </body>
 </html>
