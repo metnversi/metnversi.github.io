@@ -34,3 +34,12 @@ nav a.active {
     background-color: #4CAF50;
     color: white;
 }
+
+
+.card {
+    border: 1px solid #000;
+    padding: 20px;
+    margin: 20px 0;
+    text-decoration: none;
+    color: black;
+}
